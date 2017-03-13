@@ -12,7 +12,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>Dashboard</title>
+        <title>Admin Dashboard</title>
         <meta name="description" content="SMS: Bootstrap Responsive Admin Theme">
         <meta name="viewport" content="width=device-width">
         <link rel="SHORTCUT ICON" href="assets/img/site.png"/>
