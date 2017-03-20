@@ -1,3 +1,5 @@
+<%@page import="Model_Class.Student_View_Model"%>
+<%@page import="java.util.List"%>
 <!DOCTYPE html>
 
 <html class="no-js"> <!--<![endif]-->
@@ -100,11 +102,15 @@
                         <img src="assets/img/default.png" alt="" class="media-object img-polaroid user-img"></a>
 
                     <div class="media-body hidden-tablet">
-                        <h5 class="media-heading">Archie</h5>
+                        <h5 class="media-heading"><%
+                            out.println(session.getAttribute("name"));
+                            %></h5>
                         <ul class="unstyled user-info">
                             <li><a href="">Administrator</a></li>
                             <li>Last Access : <br/>
-                                <small><i class="icon-calendar"></i> 16 Mar 16:32</small>
+                                <small><i class="icon-calendar"></i> <%
+                                    out.println(session.getAttribute("lastvisit"));
+                                    %></small>
                             </li>
                         </ul>
                     </div>
@@ -173,7 +179,7 @@
                         </div>
                         <div class="modal-body">
                           <div id="collapse2" class="body collapse in">
-                                            <form action="student_registration.jsp" class="form-horizontal" id="popup-validation">
+                              <form action="Student_Registration_Controller" class="form-horizontal" id="popup-validation" method="post">
                                                 <div class="control-group">
                                                     <label class="control-label">Full Name</label>
 
@@ -196,8 +202,8 @@
 
                                                     <div class="controls">
                                                         <select name="gender" id="gender" class="validate[required]">
-                                                            <option value="option1">Male</option>
-                                                            <option value="option2">Female</option>
+                                                            <option value="Male">Male</option>
+                                                            <option value="Female">Female</option>
                                                             </select>
                                                     </div>
                                                 </div>
@@ -208,14 +214,14 @@
                                                     <div class="controls">
                                                         <select name="blood_group" id="blood_group" class="validate[required]">
 															<option></option>
-															<option>A+</option>
-															<option>A-</option>
-															<option>B+</option>
-															<option>B-</option>
-															<option>O+</option>
-															<option>O-</option>
-															<option>AB+</option>
-															<option>AB-</option>
+                                                                                                                        <option value="A+">A+</option>
+                                                                                                                        <option value="A-">A-</option>
+                                                                                                                        <option value="B+">B+</option>
+                                                                                                                        <option value="B-">B-</option>
+                                                                                                                        <option value="O+">O+</option>
+                                                                                                                        <option value="O-">O-</option>
+                                                                                                                        <option value="AB+">AB+</option>
+                                                                                                                        <option value="AB-">AB-</option>
 															</select>
                                                     </div>
                                                 </div>
@@ -260,19 +266,22 @@
                                                     <label class="control-label">Class</label>
 
                                                     <div class="controls">
-                                                        <select name="class" id="class" class="validate[required]">
+                                                        <select name="student_class" id="class" class="validate[required]">
 															<option></option>
-															<option>One</option>
-															<option>Two</option>
+                                                                                                                        <option value="One">One</option>
+                                                                                                                        <option value="Two">Two</option>
+                                                                                                                        <option value="Three">Three</option>
+                                                                                                                        <option value="Four">Four</option>
+                                                                                                                        <option value="Five">Five</option>
 															</select>
                                                     </div>
                                                 </div>
 												
 												<div class="control-group">
-                                                    <label class="control-label">ID No</label>
+                                                    <label class="control-label">Roll No</label>
 
                                                     <div class="controls">
-                                                        <input type="int" class="validate[required] text-input" name="student_id" id="student_id" data-prompt-position="bottomLeft" >
+                                                        <input type="int" class="validate[required] text-input" name="roll" id="student_id" data-prompt-position="bottomLeft" >
                                                     </div>
                                                 </div>
 												
@@ -280,17 +289,11 @@
                                                     <label class="control-label">Registration No</label>
 
                                                     <div class="controls">
-                                                        <input type="int" class="validate[required] text-input" name="regi_no" id="regi_no" data-prompt-position="bottomLeft" >
+                                                        <input type="int" class="validate[required] text-input" name="reg_no" id="regi_no" data-prompt-position="bottomLeft" >
                                                     </div>
                                                 </div>
 												
-												<div class="control-group">
-                                                    <label class="control-label">User Name</label>
-
-                                                    <div class="controls">
-                                                        <input type="text" class="validate[required] text-input" name="user_name" id="user_name" data-prompt-position="bottomLeft" >
-                                                    </div>
-                                                </div>
+												
 
                                                 <div class="control-group">
                                                     <label class="control-label">Password</label>
@@ -299,21 +302,9 @@
                                                         <input class="validate[required] text-input" type="password" name="password" id="pass1"/>
                                                     </div>
                                                 </div>
-                                                <div class="control-group">
-                                                    <label class="control-label">Confirm Password</label>
-
-                                                    <div class="controls">
-                                                        <input class="validate[required,equals[password]] text-input" type="password" name="confirm_password"
-                                                               id="pass2"/>
-                                                    </div>
-                                                </div>
+                                                
 												
-												<div class="control-group">
-                                                    <label class="control-label">Photo</label>
-                                                    <div class="controls">
-                                                        <input type="file" id="student_photo"/>
-                                                    </div>
-                                                </div>
+												
 												
 												
 												
@@ -334,386 +325,38 @@
                                             <table id="dataTable" class="table table-bordered table-condensed table-hover table-striped">
                                                 <thead>
                                                     <tr>
-                                                        <th>#</th>
-                                                        <th>Photo</th>
                                                         <th>Name</th>
-                                                        <th>ID No</th>
-														<th>E-mail</th>
-                                                        <th>Action</th>
+                                                        <th>Email</th>
+                                                        <th>Mobile</th>
+                                                        <th>Class</th>
+                                                        <th>Roll</th>
+                                                        <th>RegNo</th>
+							<th>Action</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
+                                                    
+                                                        <% List<Student_View_Model> list= Student_View_Model.getAllStudent(); %>
+                                                        
+                                                        <% for(Student_View_Model view: list){
+                                                            
+                                                            %>
+                                                        
+                                                    
                                                     <tr>
-                                                        <td>1</td>
-                                                        <td><img src="assets/img/default.png" alt="" class="media-object img-polaroid user-img"></td>
-                                                        <td>Otto</td>
-                                                        <td>Otto</td>
-                                                        <td>@mdo</td>
-                                                        <td>
-                                                            <!--  Action -->
-                                                            <a href="view_student_profile.jsp"><button class="btn edit">View</button></a>
-															
-			
-			
-			<!-- EDIT Student PROFILE-->												
-			
-				
-				<a href="#myModal2" data-toggle="modal"><button class="btn edit"><i class="icon-edit"></i>Edit</button></a>				
-                    
-                    <div aria-hidden="true" aria-labelledby="myModalLabel2" role="dialog" tabindex="-1" class="modal hide fade" id="myModal2">
-                        <div class="modal-header">
-                            <button aria-hidden="true" data-dismiss="modal" class="close" type="button">x</button>
-                            <h3 id="myModalLabel2">Edit Student Profile</h3>
-                        </div>
-                        <div class="modal-body">
-                          <div id="collapse2" class="body collapse in">
-									
-										<form action="student_registration.jsp" class="form-horizontal" id="popup-validation">
-                                                <div class="control-group">
-                                                    <label class="control-label">Full Name</label>
-
-                                                    <div class="controls">
-                                                        <input type="text" class="validate[required] text-input" name="student_name" id="student_name" data-prompt-position="bottomLeft" >
-                                                    </div>
-                                                </div>
-												
-												<div class="control-group">
-                                                    <label class="control-label">Birth Date</label>
-
-                                                    <div class="controls">
-                                                        <input value="" placeholder="01-12-2017" class="validate[required,custom[date]] text-input" type="text"
-                                                               name="birth_date" id="birth_date"/>
-                                                    </div>
-                                                </div>
-												
-                                                <div class="control-group">
-                                                    <label class="control-label">Gender</label>
-
-                                                    <div class="controls">
-                                                        <select name="gender" id="gender" class="validate[required]">
-                                                            <option value="option1">Male</option>
-                                                            <option value="option2">Female</option>
-                                                            </select>
-                                                    </div>
-                                                </div>
-												
-												<div class="control-group">
-                                                    <label class="control-label">Blood Group</label>
-
-                                                    <div class="controls">
-                                                        <select name="blood_group" id="blood_group" class="validate[required]">
-															<option></option>
-															<option>A+</option>
-															<option>A-</option>
-															<option>B+</option>
-															<option>B-</option>
-															<option>O+</option>
-															<option>O-</option>
-															<option>AB+</option>
-															<option>AB-</option>
-															</select>
-                                                    </div>
-                                                </div>
-												
-												<div class="control-group">
-                                                    <label class="control-label">Religion</label>
-
-                                                    <div class="controls">
-                                                        <input type="text" class="validate[required] text-input" name="religion" id="religion" data-prompt-position="bottomLeft" >
-                                                    </div>
-                                                </div>
-                                                
-
-
-                                                <div class="control-group">
-                                                    <label class="control-label">E-mail</label>
-
-                                                    <div class="controls">
-                                                        <input class="validate[required,custom[email]] text-input" type="text" name="email"
-                                                               id="email"/>
-                                                    </div>
-                                                </div>
-												
-												<div class="control-group">
-                                                    <label class="control-label">Mobile No</label>
-
-                                                    <div class="controls">
-                                                        <input value="" class="validate[required,minSize[11]] text-input" type="text" name="mobile"
-                                                               id="mobile"/>
-                                                    </div>
-                                                </div>
-												
-												<div class="control-group">
-                                                    <label class="control-label">Address</label>
-
-                                                    <div class="controls">
-                                                        <textarea type="text" class="validate[required] text-input" name="address" id="address" data-prompt-position="bottomLeft" ></textarea>
-                                                    </div>
-                                                </div>
-												
-												<div class="control-group">
-                                                    <label class="control-label">Class</label>
-
-                                                    <div class="controls">
-                                                        <select name="class" id="class" class="validate[required]">
-															<option></option>
-															<option>One</option>
-															<option>Two</option>
-															</select>
-                                                    </div>
-                                                </div>
-												
-												<div class="control-group">
-                                                    <label class="control-label">ID No</label>
-
-                                                    <div class="controls">
-                                                        <input type="int" class="validate[required] text-input" name="student_id" id="student_id" data-prompt-position="bottomLeft" >
-                                                    </div>
-                                                </div>
-												
-												<div class="control-group">
-                                                    <label class="control-label">Registration No</label>
-
-                                                    <div class="controls">
-                                                        <input type="int" class="validate[required] text-input" name="regi_no" id="regi_no" data-prompt-position="bottomLeft" >
-                                                    </div>
-                                                </div>
-												
-												<div class="control-group">
-                                                    <label class="control-label">User Name</label>
-
-                                                    <div class="controls">
-                                                        <input type="text" class="validate[required] text-input" name="user_name" id="user_name" data-prompt-position="bottomLeft" >
-                                                    </div>
-                                                </div>
-
-                                                <div class="control-group">
-                                                    <label class="control-label">Password</label>
-
-                                                    <div class="controls">
-                                                        <input class="validate[required] text-input" type="password" name="password" id="pass1"/>
-                                                    </div>
-                                                </div>
-                                                <div class="control-group">
-                                                    <label class="control-label">Confirm Password</label>
-
-                                                    <div class="controls">
-                                                        <input class="validate[required,equals[password]] text-input" type="password" name="confirm_password"
-                                                               id="pass2"/>
-                                                    </div>
-                                                </div>
-												
-												<div class="control-group">
-                                                    <label class="control-label">Photo</label>
-                                                    <div class="controls">
-                                                        <input type="file" id="student_photo"/>
-                                                    </div>
-                                                </div>
-												
-												
-												
-												<div class="form-actions no-margin-bottom">
-                                                    <input type="submit" value="Submit" class="btn btn-success">
-													<input type="reset" value="Reset" class="btn btn-primary">
-                                                </div>
-                                            </form>
-											
-								</div>
-                        </div>
-                        
-                    </div>
-						  
-                                                            <button class="btn btn-danger remove" data-toggle="confirmation"><i class="icon-remove"></i>Delete</button>
-                                                        </td>
+                                                        <td><% out.println(view.getFullName()); %></td>
+                                                        <td><% out.println(view.getEmail()); %></td>
+                                                        <td><% out.println(view.getMobile()); %></td>
+                                                        <td><% out.println(view.getStudentClass()); %></td>
+                                                        <td><% out.println(view.getRoll()); %></td>
+                                                        <td><% out.println(view.getRegiNo()); %></td>
+                                                        <td>Action Button</td>
                                                     </tr>
-                                                    <tr>
-                                                        <td>2</td>
-                                                        <td><img src="assets/img/default.png" alt="" class="media-object img-polaroid user-img"></td>
-                                                        <td>Otto</td>
-                                                        <td>Otto</td>
-                                                        <td>@mdo</td>
-                                                        <td>
-                                                         
-														 <!--  Action -->
-                                                            <a href="view_student_profile.jsp"><button class="btn edit">View</button></a>
-															
-			
-			
-			<!-- EDIT Student PROFILE-->												
-			
-				
-				<a href="#myModal2" data-toggle="modal"><button class="btn edit"><i class="icon-edit"></i>Edit</button></a>				
-                    
-                    <div aria-hidden="true" aria-labelledby="myModalLabel2" role="dialog" tabindex="-1" class="modal hide fade" id="myModal2">
-                        <div class="modal-header">
-                            <button aria-hidden="true" data-dismiss="modal" class="close" type="button">x</button>
-                            <h3 id="myModalLabel2">Edit Student Profile</h3>
-                        </div>
-                        <div class="modal-body">
-                          <div id="collapse2" class="body collapse in">
-						  
-											<form action="student_registration.jsp" class="form-horizontal" id="popup-validation">
-                                                <div class="control-group">
-                                                    <label class="control-label">Full Name</label>
-
-                                                    <div class="controls">
-                                                        <input type="text" class="validate[required] text-input" name="student_name" id="student_name" data-prompt-position="bottomLeft" >
-                                                    </div>
-                                                </div>
-												
-												<div class="control-group">
-                                                    <label class="control-label">Birth Date</label>
-
-                                                    <div class="controls">
-                                                        <input value="" placeholder="01-12-2017" class="validate[required,custom[date]] text-input" type="text"
-                                                               name="birth_date" id="birth_date"/>
-                                                    </div>
-                                                </div>
-												
-                                                <div class="control-group">
-                                                    <label class="control-label">Gender</label>
-
-                                                    <div class="controls">
-                                                        <select name="gender" id="gender" class="validate[required]">
-                                                            <option value="option1">Male</option>
-                                                            <option value="option2">Female</option>
-                                                            </select>
-                                                    </div>
-                                                </div>
-												
-												<div class="control-group">
-                                                    <label class="control-label">Blood Group</label>
-
-                                                    <div class="controls">
-                                                        <select name="blood_group" id="blood_group" class="validate[required]">
-															<option></option>
-															<option>A+</option>
-															<option>A-</option>
-															<option>B+</option>
-															<option>B-</option>
-															<option>O+</option>
-															<option>O-</option>
-															<option>AB+</option>
-															<option>AB-</option>
-															</select>
-                                                    </div>
-                                                </div>
-												
-												<div class="control-group">
-                                                    <label class="control-label">Religion</label>
-
-                                                    <div class="controls">
-                                                        <input type="text" class="validate[required] text-input" name="religion" id="religion" data-prompt-position="bottomLeft" >
-                                                    </div>
-                                                </div>
-                                                
-
-
-                                                <div class="control-group">
-                                                    <label class="control-label">E-mail</label>
-
-                                                    <div class="controls">
-                                                        <input class="validate[required,custom[email]] text-input" type="text" name="email"
-                                                               id="email"/>
-                                                    </div>
-                                                </div>
-												
-												<div class="control-group">
-                                                    <label class="control-label">Mobile No</label>
-
-                                                    <div class="controls">
-                                                        <input value="" class="validate[required,minSize[11]] text-input" type="text" name="mobile"
-                                                               id="mobile"/>
-                                                    </div>
-                                                </div>
-												
-												<div class="control-group">
-                                                    <label class="control-label">Address</label>
-
-                                                    <div class="controls">
-                                                        <textarea type="text" class="validate[required] text-input" name="address" id="address" data-prompt-position="bottomLeft" ></textarea>
-                                                    </div>
-                                                </div>
-												
-												<div class="control-group">
-                                                    <label class="control-label">Class</label>
-
-                                                    <div class="controls">
-                                                        <select name="class" id="class" class="validate[required]">
-															<option></option>
-															<option>One</option>
-															<option>Two</option>
-															</select>
-                                                    </div>
-                                                </div>
-												
-												<div class="control-group">
-                                                    <label class="control-label">ID No</label>
-
-                                                    <div class="controls">
-                                                        <input type="int" class="validate[required] text-input" name="student_id" id="student_id" data-prompt-position="bottomLeft" >
-                                                    </div>
-                                                </div>
-												
-												<div class="control-group">
-                                                    <label class="control-label">Registration No</label>
-
-                                                    <div class="controls">
-                                                        <input type="int" class="validate[required] text-input" name="regi_no" id="regi_no" data-prompt-position="bottomLeft" >
-                                                    </div>
-                                                </div>
-												
-												<div class="control-group">
-                                                    <label class="control-label">User Name</label>
-
-                                                    <div class="controls">
-                                                        <input type="text" class="validate[required] text-input" name="user_name" id="user_name" data-prompt-position="bottomLeft" >
-                                                    </div>
-                                                </div>
-
-                                                <div class="control-group">
-                                                    <label class="control-label">Password</label>
-
-                                                    <div class="controls">
-                                                        <input class="validate[required] text-input" type="password" name="password" id="pass1"/>
-                                                    </div>
-                                                </div>
-                                                <div class="control-group">
-                                                    <label class="control-label">Confirm Password</label>
-
-                                                    <div class="controls">
-                                                        <input class="validate[required,equals[password]] text-input" type="password" name="confirm_password"
-                                                               id="pass2"/>
-                                                    </div>
-                                                </div>
-												
-												<div class="control-group">
-                                                    <label class="control-label">Photo</label>
-                                                    <div class="controls">
-                                                        <input type="file" id="student_photo"/>
-                                                    </div>
-                                                </div>
-												
-												
-												
-												<div class="form-actions no-margin-bottom">
-                                                    <input type="submit" value="Submit" class="btn btn-success">
-													<input type="reset" value="Reset" class="btn btn-primary">
-                                                </div>
-                                            </form>
-						  </div>
-                        </div>
-                        
-                    </div>
-						  
-                                                            <!-- EDIT Student PROFILE-->
-															
-															
-                                                            <a href="remove.jsp"><button class="btn btn-danger remove" data-toggle="confirmation"><i class="icon-remove"></i>Delete</button></a>
-									<!--  Action -->
-                                                        </td>
-                                                    </tr>
-													
+                                                    <%
+                                                    }
+                                                        
+                                                                %>
+                                                    					
                                                 </tbody>
                                             </table>
                                         </div>

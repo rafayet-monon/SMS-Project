@@ -24,8 +24,8 @@
 					
                 <ul class="inline">
                   <!--  <li><a class="btn btn-primary btn-large" href="admin_login.jsp"></i>Admin</a></li>  -->
-                    <li><a class="btn btn-primary btn-large" href="teacher_reg.jsp"></i>Teacher</a></li>
-                    <li><a class="btn btn-primary btn-large" href="student_reg.jsp"></i>Student</a></li>
+                    <li><a class="btn btn-primary btn-large" href="teacher_login.jsp"></i>Teacher</a></li>
+                    <li><a class="btn btn-primary btn-large" href="student_login.jsp"></i>Student</a></li>
                 </ul>
             </div>
    

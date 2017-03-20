@@ -5,14 +5,9 @@
  */
 package ServletController;
 
+import Model_Class.AdminLoginModel;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.net.URLEncoder;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.Date;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -30,58 +25,35 @@ public class AdminLogin extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-         try
-    {
+        PrintWriter out = response.getWriter();
+        try {
+            String email = request.getParameter("admin_email");
+            String password = request.getParameter("admin_password");
 
-    Class.forName("oracle.jdbc.OracleDriver");
-    }
-    catch(ClassNotFoundException c)
-    {
-      System.out.println("Error:"+c.getMessage());
-    }
-       PrintWriter out=response.getWriter();
-       String name=request.getParameter("admin_email");
-       String pass=request.getParameter("admin_password");
+            if (AdminLoginModel.validateAdmin(email, password) != 0) {
+                HttpSession session = request.getSession();
+                Date lastvisit = new Date();
 
-       
-           try
-    {
-    
-      Connection conn=DriverManager.getConnection("jdbc:oracle:thin:@ACE:49675:xe","system","ace");
-        
-      PreparedStatement ps = conn.prepareStatement("select * from tbl_admin where name=? and password=?");
+                session.setAttribute("id", AdminLoginModel.getId());
+                session.setAttribute("name", AdminLoginModel.getName());
+                session.setAttribute("email", AdminLoginModel.getEmail());
+                session.setAttribute("lastvisit", lastvisit.toString());
 
-        if (name.equals("") || pass.equals("")) {
-            out.println("Cannot leave username or password blank");
-            
-        } 
-        else {
-           ps.setString(1,name);
-            ps.setString(2,pass); 
-            ResultSet rs=ps.executeQuery();
-            
-            if(rs.next()){
-                
-               
-                HttpSession session=request.getSession();  
-                session.setAttribute("name",name);  
-             
-                String message = "WELCOME";
-                response.sendRedirect("admin_dashboard.jsp?message=" + URLEncoder.encode(message, "UTF-8"));
+                RequestDispatcher rd = request.getRequestDispatcher("admin_dashboard.jsp");
+                rd.forward(request, response);
+
+            } else {
+
+                RequestDispatcher rd = request.getRequestDispatcher("admin_login.jsp");
+                rd.include(request, response);
             }
-            else{
-                   String message = "Please Regiser..";
-        response.sendRedirect("admin_login.jsp?message=" + URLEncoder.encode(message, "UTF-8"));
-            }
+
+        } catch (Exception e) {
+
+        } finally {
+            out.close();
         }
-        
-        conn.close();
 
-    }
-    catch(SQLException s)
-    {
-      System.out.println("Error:"+s.getMessage());
-    }
     }
 
 }

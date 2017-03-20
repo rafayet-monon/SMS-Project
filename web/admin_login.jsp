@@ -1,8 +1,15 @@
 <!DOCTYPE html>
 
 <%
-
-%>
+    if(session.getAttribute("id")!=null){
+        response.sendRedirect("admin_dashboard.jsp");
+        
+    }
+    
+    else{
+    
+   
+    %>
 
 <html>
     <head>
@@ -71,3 +78,7 @@
     </script>
 </body>
 </html>
+
+<%
+    }
+%>

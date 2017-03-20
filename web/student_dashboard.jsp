@@ -1,4 +1,15 @@
+<% if(session.getAttribute("id")==null){
+    response.sendRedirect("student_login.jsp");    
+    }
+else{
+
+    %>
+
+
+<%@page import="Model_Class.Student_Login_Model"%>
+<%@page import="java.util.Date"%>
 <!DOCTYPE html>
+
 
 <html class="no-js">
     <head>
@@ -51,7 +62,7 @@
                                 </div>
                                 <div class="btn-group">
                                     <a class="btn btn-inverse" data-placement="bottom" data-original-title="Logout" rel="tooltip"
-                                       href="index.jsp"><i class="icon-off"></i></a></div>
+                                       href="Student_Logout_Controller"><i class="icon-off"></i></a></div>
                             </div>
                             <!-- /.topnav -->
                             <div class="nav-collapse collapse">
@@ -97,15 +108,11 @@
                         <img src="assets/img/default.png" alt="" class="media-object img-polaroid user-img"></a>
 
                     <div class="media-body hidden-tablet">
-                        <h5 class="media-heading">${param.message}<% if (session.getAttribute("email") == null) { %>
-    <p> some content </p>
-<% } else {%>
-    <p> ${email} </p>
-<% } %></h5> 
+                        <h5 class="media-heading">Student Name</h5>  
                         <ul class="unstyled user-info">
-                            <li><a href="">Student</a></li>
+                            <li><a href=""><% out.println(session.getAttribute("name")); %> </a></li>
                             <li>Last Access : <br/>
-                                <small><i class="icon-calendar"></i> 16 Mar 16:32</small>
+                                <small><i class="icon-calendar"></i> <% out.println(session.getAttribute("lastvisit")); %></small>
                             </li>
                         </ul>
                     </div>
@@ -343,27 +350,39 @@
     </div>
 	
             <h1>Student Name</h1>
-            <p>Student</p>
+            <p><% out.println(session.getAttribute("name")); %></p>
             
 		</div>
         <div class="panel-body profile-view-dis">
             <h1>Personal Information</h1>
                             <div class="row">
                     <div class="profile-view-tab">
-                        <p><span>Date of Birth </span>: 23 Feb 2017</p>
+                        <p><span>Date of Birth </span>: <% out.println(session.getAttribute("birthdate")); %></p>
+                    </div>
+                    <div class="profile-view-tab">
+                        <p><span>Class </span>:<% out.println(session.getAttribute("studentclass")); %> </p>
+                    </div>
+                    <div class="profile-view-tab">
+                        <p><span>Roll </span>:<% out.println(session.getAttribute("roll")); %> </p>
+                    </div>
+                    <div class="profile-view-tab">
+                        <p><span>Registration </span>:<% out.println(session.getAttribute("reg")); %> </p>
                     </div>
                     
                     <div class="profile-view-tab">
-                        <p><span>Gender </span>: Male</p>
+                        <p><span>Gender </span>: <% out.println(session.getAttribute("gender")); %></p>
                     </div>
                     <div class="profile-view-tab">
-                        <p><span>Religion </span>: Unknown</p>
+                        <p><span>Religion </span>: <% out.println(session.getAttribute("religion")); %></p>
                     </div>
                     <div class="profile-view-tab">
-                        <p><span>Phone </span>: </p>
+                        <p><span>Email </span>:<% out.println(session.getAttribute("email")); %> </p>
                     </div>
                     <div class="profile-view-tab">
-                        <p><span>Address </span>: </p>
+                        <p><span>Phone </span>:<% out.println(session.getAttribute("mobile")); %> </p>
+                    </div>
+                    <div class="profile-view-tab">
+                        <p><span>Address </span>: <% out.println(session.getAttribute("address")); %></p>
                     </div>
                                     </div>
                     </div>
@@ -434,3 +453,6 @@
 
     </body>
 </html>
+<%
+    }
+%>

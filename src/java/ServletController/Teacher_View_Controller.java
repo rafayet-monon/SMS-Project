@@ -5,30 +5,28 @@
  */
 package ServletController;
 
+import Model_Class.Database_Connection;
 import java.io.IOException;
-import javax.servlet.RequestDispatcher;
+import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author rashu
  */
-public class Admin_Logout extends HttpServlet {
+public class Teacher_View_Controller extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         
-        HttpSession session = request.getSession();
-        session.invalidate();
-        RequestDispatcher rd = request.getRequestDispatcher("admin_login.jsp");
-        rd.forward(request, response);
-        
-        
-        
+
     }
 
 }

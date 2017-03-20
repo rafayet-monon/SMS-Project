@@ -67,8 +67,8 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\t\t\t\t\t\r\n");
       out.write("                <ul class=\"inline\">\r\n");
       out.write("                  <!--  <li><a class=\"btn btn-primary btn-large\" href=\"admin_login.jsp\"></i>Admin</a></li>  -->\r\n");
-      out.write("                    <li><a class=\"btn btn-primary btn-large\" href=\"teacher_reg.jsp\"></i>Teacher</a></li>\r\n");
-      out.write("                    <li><a class=\"btn btn-primary btn-large\" href=\"student_reg.jsp\"></i>Student</a></li>\r\n");
+      out.write("                    <li><a class=\"btn btn-primary btn-large\" href=\"teacher_login.jsp\"></i>Teacher</a></li>\r\n");
+      out.write("                    <li><a class=\"btn btn-primary btn-large\" href=\"student_login.jsp\"></i>Student</a></li>\r\n");
       out.write("                </ul>\r\n");
       out.write("            </div>\r\n");
       out.write("   \r\n");

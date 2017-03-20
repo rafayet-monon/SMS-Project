@@ -44,8 +44,15 @@ public final class admin_005flogin_jsp extends org.apache.jasper.runtime.HttpJsp
       out.write("<!DOCTYPE html>\r\n");
       out.write("\r\n");
 
-
-
+    if(session.getAttribute("id")!=null){
+        response.sendRedirect("admin_dashboard.jsp");
+        
+    }
+    
+    else{
+    
+   
+    
       out.write("\r\n");
       out.write("\r\n");
       out.write("<html>\r\n");
@@ -115,6 +122,10 @@ public final class admin_005flogin_jsp extends org.apache.jasper.runtime.HttpJsp
       out.write("    </script>\r\n");
       out.write("</body>\r\n");
       out.write("</html>\r\n");
+      out.write("\r\n");
+
+    }
+
     } catch (Throwable t) {
       if (!(t instanceof SkipPageException)){
         out = _jspx_out;

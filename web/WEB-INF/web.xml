@@ -9,20 +9,32 @@
         <servlet-class>ServletController.Admin_Logout</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>StudentRegistration</servlet-name>
-        <servlet-class>ServletController.StudentRegistration</servlet-class>
+        <servlet-name>Teacher_Registration_Controller</servlet-name>
+        <servlet-class>ServletController.Teacher_Registration_Controller</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>TeacherRegistration</servlet-name>
-        <servlet-class>ServletController.TeacherRegistration</servlet-class>
+        <servlet-name>Teacher_View_Controller</servlet-name>
+        <servlet-class>ServletController.Teacher_View_Controller</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>StudentLogin</servlet-name>
-        <servlet-class>ServletController.StudentLogin</servlet-class>
+        <servlet-name>Student_Registration_Controller</servlet-name>
+        <servlet-class>ServletController.Student_Registration_Controller</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>TeacherLogin</servlet-name>
-        <servlet-class>ServletController.TeacherLogin</servlet-class>
+        <servlet-name>Teacher_Login_Controller</servlet-name>
+        <servlet-class>ServletController.Teacher_Login_Controller</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Student_Login_Controller</servlet-name>
+        <servlet-class>ServletController.Student_Login_Controller</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Student_Logout_Controller</servlet-name>
+        <servlet-class>ServletController.Student_Logout_Controller</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Teacher_Logout_Controller</servlet-name>
+        <servlet-class>ServletController.Teacher_Logout_Controller</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>AdminLogin</servlet-name>
@@ -33,20 +45,32 @@
         <url-pattern>/Admin_Logout</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>StudentRegistration</servlet-name>
-        <url-pattern>/StudentRegistration</url-pattern>
+        <servlet-name>Teacher_Registration_Controller</servlet-name>
+        <url-pattern>/Teacher_Registration_Controller</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>TeacherRegistration</servlet-name>
-        <url-pattern>/TeacherRegistration</url-pattern>
+        <servlet-name>Teacher_View_Controller</servlet-name>
+        <url-pattern>/Teacher_View_Controller</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>StudentLogin</servlet-name>
-        <url-pattern>/StudentLogin</url-pattern>
+        <servlet-name>Student_Registration_Controller</servlet-name>
+        <url-pattern>/Student_Registration_Controller</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>TeacherLogin</servlet-name>
-        <url-pattern>/TeacherLogin</url-pattern>
+        <servlet-name>Teacher_Login_Controller</servlet-name>
+        <url-pattern>/Teacher_Login_Controller</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Student_Login_Controller</servlet-name>
+        <url-pattern>/Student_Login_Controller</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Student_Logout_Controller</servlet-name>
+        <url-pattern>/Student_Logout_Controller</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Teacher_Logout_Controller</servlet-name>
+        <url-pattern>/Teacher_Logout_Controller</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

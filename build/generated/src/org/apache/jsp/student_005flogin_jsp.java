@@ -41,6 +41,20 @@ public final class student_005flogin_jsp extends org.apache.jasper.runtime.HttpJ
       _jspx_out = out;
       _jspx_resourceInjector = (org.glassfish.jsp.api.ResourceInjector) application.getAttribute("com.sun.appserv.jsp.resource.injector");
 
+
+    if(session.getAttribute("id")!=null){
+        response.sendRedirect("student_dashboard.jsp");
+        
+    }
+    
+    else{
+    
+    
+    
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
       out.write("<!DOCTYPE html>\r\n");
       out.write("<html>\r\n");
       out.write("    <head>\r\n");
@@ -58,15 +72,12 @@ public final class student_005flogin_jsp extends org.apache.jasper.runtime.HttpJ
       out.write("            </div>\r\n");
       out.write("            <div class=\"tab-content\">\r\n");
       out.write("                <div id=\"login\" class=\"tab-pane active\">\r\n");
-      out.write("                    <center> <h3><p>");
-      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${param.message}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("</p></h3></center>\r\n");
-      out.write("                    <form action=\"StudentLogin\" class=\"form-signin\">\r\n");
+      out.write("                    <form action=\"Student_Login_Controller\" class=\"form-signin\" method=\"post\">\r\n");
       out.write("                        <p class=\"muted text-center\">\r\n");
-      out.write("                            Enter your Email and password\r\n");
+      out.write("                            Enter your username and password\r\n");
       out.write("                        </p>\r\n");
-      out.write("                        <input type=\"text\" placeholder=\"Email\" name=\"std_email\" class=\"input-block-level\">\r\n");
-      out.write("                        <input type=\"password\" placeholder=\"Password\" name=\"std_password\" class=\"input-block-level\">\r\n");
+      out.write("                        <input type=\"text\" placeholder=\"Email\" class=\"input-block-level\" name=\"email\">\r\n");
+      out.write("                        <input type=\"password\" placeholder=\"Password\" class=\"input-block-level\" name=\"password\">\r\n");
       out.write("                        <button class=\"btn btn-large btn-primary btn-block\" type=\"submit\">Sign in</button>\r\n");
       out.write("                    </form>\r\n");
       out.write("                </div>\r\n");
@@ -112,6 +123,11 @@ public final class student_005flogin_jsp extends org.apache.jasper.runtime.HttpJ
       out.write("        </script>\r\n");
       out.write("    </body>\r\n");
       out.write("</html>\r\n");
+      out.write("\r\n");
+      out.write("\r\n");
+
+    }
+
     } catch (Throwable t) {
       if (!(t instanceof SkipPageException)){
         out = _jspx_out;

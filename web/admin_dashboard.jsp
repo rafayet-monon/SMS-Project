@@ -1,18 +1,25 @@
 
+<% if(session.getAttribute("id")==null){
+    response.sendRedirect("admin_login.jsp");    
+    }
+else{
+
+    %>
+
+
+
+
+     
 <%@page import="java.util.Date"%>
-<%@page import="ServletController.AdminLoginModel"%>
+<%@page import="Model_Class.AdminLoginModel"%>
+
 <!DOCTYPE html>
-
-
-
-
-
 
 <html class="no-js">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>Admin Dashboard</title>
+        <title>Dashboard</title>
         <meta name="description" content="SMS: Bootstrap Responsive Admin Theme">
         <meta name="viewport" content="width=device-width">
         <link rel="SHORTCUT ICON" href="assets/img/site.png"/>
@@ -105,11 +112,8 @@
                         <img src="assets/img/default.png" alt="" class="media-object img-polaroid user-img"></a>
 
                     <div class="media-body hidden-tablet">
-                        <h5 class="media-heading"> ${param.message}<% if (session.getAttribute("name") == null) { %>
-    <p> some content </p>
-<% } else {%>
-    <p> ${name} </p>
-<% } %></h5>
+                        <h5 class="media-heading"><%                            out.println(session.getAttribute("name"));
+                            %></h5>
                         <ul class="unstyled user-info">
                             <li>Administrator</li>
                             <li>Last Access : <br/>
@@ -290,3 +294,10 @@
 
     </body>
 </html>
+
+
+<%
+    }
+
+
+%>

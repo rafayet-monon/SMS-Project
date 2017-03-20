@@ -56,7 +56,7 @@ public class StudentRegistration extends HttpServlet {
            try
     {
     
-      Connection conn=DriverManager.getConnection("jdbc:oracle:thin:@ACE:49675:xe","system","ace");
+      Connection conn=DriverManager.getConnection("jdbc:oracle:thin:@ACE:49677:xe","system","ace");
         
       PreparedStatement ps = conn.prepareStatement("insert into tbl_student (std_name,std_username,std_password,std_address,std_email,std_phn,std_gender,std_blood,std_religion,std_roll,std_reg,std_class,std_bdate) values (?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
